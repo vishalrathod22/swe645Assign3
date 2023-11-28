@@ -7,6 +7,20 @@ pipeline {
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // You can use a more sophisticated versioning strategy
     }
 
+
+    stages {
+        stage("Declarative: Checkout SCM") {
+            steps {
+                script {
+                    def gitTool = tool 'Default'
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 1337, url: 'https://github.com/vishalrathod22/swe645_Assign3']]], gitTool: gitTool)
+                }
+            }
+        }
+
+        // The rest of your pipeline stages...
+    }
+    
     stages {
         stage("Building the Student Survey Image") {
             steps {
