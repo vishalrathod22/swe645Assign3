@@ -15,8 +15,8 @@ pipeline {
                     sh 'rm -rf *.jar'
                     sh 'mvn clean package'
                     echo "${BUILD_TIMESTAMP}"
-                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'vishal77', passwordVariable: 'Vanitha%12')]) {
+                        sh "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}"
                         sh "docker build -t ${vishal77}/swe645:${ok} ."
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
         stage("Pushing image to Docker Hub") {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'vishal77', passwordVariable: 'Vanitha%12')]) {
                         sh "docker push ${vishal77}/swe645:${ok}"
                     }
                 }
