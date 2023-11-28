@@ -7,28 +7,25 @@ pipeline {
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // You can use a more sophisticated versioning strategy
     }
 
-    stages{
-        stage ("Declarative: Checkout SCM") {
+    stages {
+        stage("Declarative: Checkout SCM") {
             steps {
                 script {
                     def gitTool = tool 'Default'
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 1337, url: 'https://github.com/vishalrathod22/swe645_Assign3']]], gitTool: gitTool)
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 'Vanitha%12', url: 'https://github.com/vishalrathod22/swe645_Assign3']]], gitTool: gitTool)
                 }
             }
         }
-    }
-     
-    //stages {
+
         stage("Building the Student Survey Image") {
             steps {
                 script {
-                    checkout scm
                     sh 'rm -rf *.jar'
                     sh 'mvn clean package'
                     echo "${BUILD_TIMESTAMP}"
                     withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'vishal77', passwordVariable: 'Vanitha%12')]) {
                         sh "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}"
-                        sh "docker build -t ${vishal77}/swe645:${ok} ."
+                        sh "docker build -t ${DOCKERHUB_USER}/swe645:${DOCKER_IMAGE_TAG} ."
                     }
                 }
             }
@@ -38,7 +35,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'vishal77', passwordVariable: 'Vanitha%12')]) {
-                        sh "docker push ${vishal77}/swe645:${ok}"
+                        sh "docker push ${DOCKERHUB_USER}/swe645:${DOCKER_IMAGE_TAG}"
                     }
                 }
             }
@@ -51,7 +48,7 @@ pipeline {
                 }
             }
         }
-    //}
+    }
 
     post {
         success {
