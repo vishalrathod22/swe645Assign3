@@ -26,7 +26,7 @@ pipeline{
 		stage("Deploying to rancher"){
 			steps{
 				script{
-					sh 'kubectl rollout restart deploy demo -n kubernetes-namespace'
+					sh 'kubectl rollout restart deploy demo -n swe-backend'
 				}
 			}
 		}
