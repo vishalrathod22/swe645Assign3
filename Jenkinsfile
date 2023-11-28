@@ -9,7 +9,7 @@ pipeline {
 
 
     
-        stage("Declarative: Checkout SCM") {
+        stages ("Declarative: Checkout SCM") {
             steps {
                 script {
                     def gitTool = tool 'Default'
