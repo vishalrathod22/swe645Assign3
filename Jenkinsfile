@@ -8,7 +8,7 @@ pipeline {
     }
 
 
-    stages {
+    
         stage("Declarative: Checkout SCM") {
             steps {
                 script {
@@ -19,7 +19,7 @@ pipeline {
         }
 
         // The rest of your pipeline stages...
-    }
+    
     
     stages {
         stage("Building the Student Survey Image") {
