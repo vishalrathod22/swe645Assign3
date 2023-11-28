@@ -7,7 +7,7 @@ FROM openjdk:17
 COPY target/HW3-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that your Spring Boot application listens on
-EXPOSE 8081
+EXPOSE 8080
 
 # Command to run your application when the container starts
 CMD ["java", "-jar", "Spring.jar"]
