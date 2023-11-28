@@ -7,9 +7,8 @@ pipeline {
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // You can use a more sophisticated versioning strategy
     }
 
-
-    
-        stages ("Declarative: Checkout SCM") {
+    stages{
+        stage ("Declarative: Checkout SCM") {
             steps {
                 script {
                     def gitTool = tool 'Default'
@@ -17,11 +16,9 @@ pipeline {
                 }
             }
         }
-
-        // The rest of your pipeline stages...
-    
-    
-    stages {
+    }
+     
+    //stages {
         stage("Building the Student Survey Image") {
             steps {
                 script {
@@ -54,7 +51,7 @@ pipeline {
                 }
             }
         }
-    }
+    //}
 
     post {
         success {
