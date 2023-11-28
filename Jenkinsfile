@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_PASS = credentials('Vanitha%12')
+        DOCKERHUB_USER = 'vishal77' // Replace with your Docker Hub username
+        DOCKERHUB_PASS = credentials('Vanitha%12') // Replace with your Docker Hub password
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // You can use a more sophisticated versioning strategy
     }
 
@@ -14,9 +15,9 @@ pipeline {
                     sh 'rm -rf *.jar'
                     sh 'mvn clean package'
                     echo "${BUILD_TIMESTAMP}"
-                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'vishal77', passwordVariable: 'Vanitha%12')]) {
-                        sh "docker login -u ${vishal77} -p ${Vanitha%12}"
-                        sh "docker build -t vishal77/swe645:${ok} ."
+                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                        sh "docker build -t ${vishal77}/swe645:${ok} ."
                     }
                 }
             }
@@ -25,7 +26,9 @@ pipeline {
         stage("Pushing image to Docker Hub") {
             steps {
                 script {
-                    sh "docker push vishal77/swe645:${ok}"
+                    withCredentials([usernamePassword(credentialsId: 'Vanitha%12', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "docker push ${vishal77}/swe645:${ok}"
+                    }
                 }
             }
         }
