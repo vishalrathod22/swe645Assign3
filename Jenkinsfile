@@ -1,17 +1,27 @@
 pipeline{
 	agent any
 	environment {
-		DOCKERHUB_PASS = credentials('Vanitha%12')
+		LOCATION = 'us-east-1c'
+		DOCKERHUB_PASS = 'Vanitha%12'
 	}
+
+	stages {
+        stage("Checkout code") {
+            steps {
+                checkout scm
+            }
+        }
 	stages{
 		stage("Building the Student Survey Image"){
 			steps{
 				script{
-					checkout scm
+					// checkout scm
+					echo 'creating the Jar..'
 					sh 'rm -rf *.jar'
 					sh 'mvn clean package'
 					sh 'echo ${BUILD_TIMESTAMP}'
-					sh 'docker login -u vishal77 -p ${DOCKERHUB_PASS}'
+					// sh 'docker login -u vishal77 -p ${DOCKERHUB_PASS}'
+					sh 'echo $DOCKERHUB_PASS | docker login -u vishal77 --password-stdin'
 					sh 'docker build -t vishal/swe645 .'
 				}
 			}
@@ -26,7 +36,7 @@ pipeline{
 		stage("Deploying to rancher"){
 			steps{
 				script{
-					sh 'kubectl rollout restart deploy swe645 -n swe-backend'
+					sh 'kubectl rollout restart deploy swe-backend'
 				}
 			}
 		}
