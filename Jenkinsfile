@@ -11,6 +11,7 @@ pipeline{
                 checkout scm
             }
         }
+	}
 	stages{
 		stage("Building the Student Survey Image"){
 			steps{
