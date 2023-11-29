@@ -17,6 +17,12 @@ pipeline {
                     echo 'Creating the Jar..'
                     sh 'rm -rf *.jar'
                     sh 'mvn clean package'
+                }
+            }
+        }
+        stage("Docker image building"){
+            steps{
+                script{
                     sh 'echo ${BUILD_TIMESTAMP}'
                     sh 'echo $DOCKERHUB_PASS | docker login -u vishal77 --password-stdin'
                     sh 'docker build -t vishal/swe645 .'
