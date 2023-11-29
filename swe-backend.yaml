@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "swe-backend"
+  cluster:
+    server: "https://ec2-18-208-134-112.compute-1.amazonaws.com/k8s/clusters/c-m-vmrtdpwh"
+    certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2RENDQ\
+      VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
+      kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
+      GN3TVRFegpPREl5TkRBZUZ3MHlNekV4TWpnd01qSXpORFJhRncwek16RXhNalV3TWpJek5EUmFNR\
+      Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56QXhNVE00TWpJME1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRXJ2TGhMS3YvdytxaApXbHNURWNvT25jSHdJV3VWNzhYd1VTMCtMT\
+      WxyN0pJajFiMnkyclZuYS8zU1NaOTR5QlFEUStuU0NITmpFR0Q1CnAydjFsMGpSS3FOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGQ\
+      mhoSVFhTldEbWV1S2lVeGRVMCtqRnI4NTQyTUFvR0NDcUdTTTQ5QkFNQ0EwY0FNRVFDSUdpTApye\
+      kR4eXc5ZGhVN2UyWGlLTnpNeDV3QWw4L1JkcThMeklBQVBXRjR6QWlCZ1Q3V3RuK0E0SU5yV0pyM\
+      TRiUDV4Cml2Y1pZZ3o0RjFyTVZVVGRUaktQdVE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+
+users:
+- name: "swe-backend"
+  user:
+    token: "kubeconfig-user-29swxjd5jm:5bt7jlj5q9wd6lj47ks9n9tg6j999pslw2vc87jmqzfjghctnbtplx"
+
+
+contexts:
+- name: "swe-backend"
+  context:
+    user: "swe-backend"
+    cluster: "swe-backend"
+
+current-context: "swe-backend"
