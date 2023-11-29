@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo 'Creating the Jar..'
-                    sh 'rm -rf *.jar'
+                    // sh 'rm -rf *.jar'
                     sh 'mvn clean package'
                 }
             }
