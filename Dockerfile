@@ -4,7 +4,7 @@ FROM openjdk:17
 # WORKDIR /app
 
 # Copy the compiled Spring Boot JAR file into the container
-COPY target/HW3-0.0.1-SNAPSHOT.jar Spring.jar
+COPY target/Spring.jar Spring.jar
 
 # Expose the port that your Spring Boot application listens on
 EXPOSE 8080
