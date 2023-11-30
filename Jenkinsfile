@@ -25,7 +25,7 @@ pipeline {
                 script{
                     sh 'echo ${BUILD_TIMESTAMP}'
                     sh 'echo $DOCKERHUB_PASS | docker login -u vishal77 --password-stdin'
-                    sh 'docker build -t vishal/swe645 .'
+                    sh 'docker build -t vishal77/swe645 .'
                 }
             }
         }
