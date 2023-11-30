@@ -25,14 +25,14 @@ pipeline {
                 script{
                     sh 'echo ${BUILD_TIMESTAMP}'
                     sh 'echo $DOCKERHUB_PASS | docker login -u vishal77 --password-stdin'
-                    sh 'docker build -t vishal/swe645:ok .'
+                    sh 'docker build -t vishal/swe645 .'
                 }
             }
         }
         stage("Pushing image to docker") {
             steps {
                 script {
-                    sh 'docker push vishal77/swe645:ok'
+                    sh 'docker push vishal77/swe645'
                 }
             }
         }
